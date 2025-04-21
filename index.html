@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Graphics Design Jobs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #121212; /* Changed background color to dark gray */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        input[type="file"],
+        textarea { /* Added textarea style */
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical; /* Allows vertical resizing */
+            height: 100px; /* Initial height */
+        }
+
+        select {
+            appearance: none; /* Remove default arrow */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position-x: 95%;
+            background-position-y: 50%;
+            padding-right: 30px;
+        }
+
+        input[type="file"]::file-selector-button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1e7e34;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+
+            h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            select,
+            input[type="file"],
+            textarea, /* Added textarea to responsive styles */
+            button[type="submit"] {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            input[type="file"]::file-selector-button {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Apply for Graphics Design Jobs</h2>
+        <form id="applicationForm">
+            <div class="form-group">
+                <label for="full_name">Full Name:</label>
+                <input type="text" id="full_name" name="full_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telegram_username">Telegram Username:</label>
+                <input type="text" id="telegram_username" name="telegram_username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="portfolio_link">Portfolio Link:</label>
+                <input type="text" id="portfolio_link" name="portfolio_link" required>
+            </div>
+
+            <div class="form-group">
+                <label for="job_role">Job Role:</label>
+                <select id="job_role" name="job_role" required>
+                    <option value="">Select Role</option>
+                    <option value="graphics_designer">Graphics Designer</option>
+                    <option value="video_editor">Video Editor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cover_letter">Cover Letter (Max 1000 characters):</label>
+                <textarea id="cover_letter" name="cover_letter" maxlength="1000"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="resume">Upload Resume (PDF or DOCX):</label>
+                <input type="file" id="resume" name="resume" accept=".pdf,.docx" required>
+                <small id="file-size-error" style="color: red; display: none;">File size must be less than 5MB.</small>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', function(event) {
+            const resumeInput = document.getElementById('resume');
+            const fileSizeError = document.getElementById('file-size-error');
+
+            if (resumeInput.files.length > 0) {
+                const fileSize = resumeInput.files[0].size; // in bytes
+                const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+
+                if (fileSize > maxSizeInBytes) {
+                    event.preventDefault(); // Prevent form submission
+                    fileSizeError.style.display = 'block'; // Show error message
+                } else {
+                    fileSizeError.style.display = 'none'; // Hide error message if size is OK
+                }
+            }
+        });
+    </script>
+</body>
+</html>
